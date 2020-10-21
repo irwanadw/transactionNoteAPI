@@ -6,8 +6,8 @@ const getStore = require('./routes/stores/getStores')
 const deleteStore = require('./routes/stores/deleteStores')
 const addInventories = require('./routes/inventories/addInventories')
 const getInventories = require('./routes/inventories/getInventories')
-const addGoods = require('./routes/goods/addGoods')
-const getGoods = require('./routes/goods/getGoods')
+const addBook = require('./routes/books/addBooks')
+const getBook = require('./routes/books/getBooks')
 
 
 const app = express()
@@ -19,8 +19,8 @@ app.use(getStore)
 app.use(deleteStore)
 app.use(addInventories)
 app.use(getInventories)
-app.use(addGoods)
-app.use(getGoods)
+app.use(addBook)
+app.use(getBook)
 
 const port = 3000
 app.listen(port, () => {

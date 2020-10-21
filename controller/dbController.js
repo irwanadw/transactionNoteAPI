@@ -1,6 +1,6 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-const goodsModel = require('../model/goodsModel')
+const goodsModel = require('../model/booksModel')
 const inventoriesModel = require('../model/inventoriesModel')
 const storesModel = require('../model/storesModel')
 
@@ -23,7 +23,7 @@ let db;
     db.defaults({
       stores: [],
       inventories: [],
-      goods: []
+      books: []
     })
       .write()
   } catch (error) {
@@ -73,8 +73,8 @@ function get(tableName, query) {
 function add(tableName, body) {
   let shapedBody
 
-  if (tableName == 'goods') {
-    shapedBody = shapeObject(body, goodsModel)
+  if (tableName == 'books') {
+    shapedBody = shapeObject(body, booksModel)
   }
   if (tableName == 'inventories') {
     shapedBody = shapeObject(body, inventoriesModel)
@@ -100,8 +100,8 @@ function add(tableName, body) {
 function edit(tableName, id, body) {
   let shapedBody
 
-  if (tableName == 'goods') {
-    shapedBody = shapeObject(body, goodsModel)
+  if (tableName == 'books') {
+    shapedBody = shapeObject(body, booksModel)
   }
   if (tableName == 'inventories') {
     shapedBody = shapeObject(body, inventoriesModel)
@@ -127,8 +127,8 @@ function edit(tableName, id, body) {
 function remove(tableName, id) {
   let shapedBody
 
-  if (tableName == 'goods') {
-    shapedBody = shapeObject(query, goodsModel)
+  if (tableName == 'books') {
+    shapedBody = shapeObject(query, booksModel)
   }
   if (tableName == 'inventories') {
     shapedBody = shapeObject(query, inventoriesModel)

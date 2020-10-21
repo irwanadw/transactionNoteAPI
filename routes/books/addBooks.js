@@ -2,9 +2,9 @@ const express = require('express')
 const app = express.Router()
 const db = require('../../controller/dbController')
 
-app.post('/goods', (req, res) => {
+app.post('/books', (req, res) => {
   const body = req.body
-  const result = db.add('goods', body)
+  const result = db.add('books', body)
   if (!result) {
     res.status(400).send('Wrong body')
   } else {
