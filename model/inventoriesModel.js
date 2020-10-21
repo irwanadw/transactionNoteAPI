@@ -2,7 +2,7 @@ module.exports = [
   'id',
   'storeId',
   'name',
-  'type',
+  'genre',
   'quantity',
   'inDate'
 ]

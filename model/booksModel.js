@@ -3,5 +3,5 @@ module.exports = [
   'inventoryId',
   'name',
   'price',
-  'expiredDate'
+  'genre'
 ]
