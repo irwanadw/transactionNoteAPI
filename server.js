@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const rootRoute = require('./routes/rootRoute')
-const addStore = require('./routes/stores/addStores')
+const registerRoute = require('./routes/registerRoute')
+const loginRoute = require('./routes/loginRoute')
+
+const addStoreRoute = require('./routes/stores/addStores')
 const getStore = require('./routes/stores/getStores')
 const deleteStore = require('./routes/stores/deleteStores')
 const editStore = require('./routes/stores/editStores')
@@ -18,7 +21,10 @@ const app = express()
 app.use(bodyParser.json())
 
 app.use(rootRoute)
-app.use(addStore)
+app.use(registerRoute)
+app.use(loginRoute)
+
+app.use(addStoreRoute)
 app.use(getStore)
 app.use(deleteStore)
 app.use(editStore)
