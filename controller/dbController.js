@@ -98,9 +98,23 @@ function add(tableName, body) {
  * @param {Object} body updated data
  */
 function edit(tableName, id, body) {
-  const parsedId = parseInt(id)
+  let shapedBody
+
+  if (tableName == 'goods') {
+    shapedBody = shapeObject(body, goodsModel)
+  }
+  if (tableName == 'inventories') {
+    shapedBody = shapeObject(body, inventoriesModel)
+  }
+  if (tableName == 'stores') {
+    shapedBody = shapeObject(body, storesModel)
+  }
+
+  if (!shapedBody) {
+    return false
+  }
   db.get(tableName)
-    .find({ id: parsedId })
+    .find(id)
     .assign(body)
     .write()
 }

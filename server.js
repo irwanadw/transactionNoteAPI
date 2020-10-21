@@ -9,6 +9,7 @@ const getInventories = require('./routes/inventories/getInventories')
 const addGoods = require('./routes/goods/addGoods')
 const getGoods = require('./routes/goods/getGoods')
 
+
 const app = express()
 app.use(bodyParser.json())
 
