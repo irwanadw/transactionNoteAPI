@@ -111,11 +111,27 @@ function edit(tableName, id, body) {
  * @param {String|Number} id data id
  */
 function remove(tableName, id) {
-  const parsedId = parseInt(id)
+  let shapedBody
+
+  if (tableName == 'goods') {
+    shapedBody = shapeObject(query, goodsModel)
+  }
+  if (tableName == 'inventories') {
+    shapedBody = shapeObject(query, inventoriesModel)
+  }
+  if (tableName == 'stores') {
+    shapedBody = shapeObject(query, storesModel)
+  }
+
+  if (!shapedBody) {
+    return false
+  }
   db.get(tableName)
-    .remove({ id: parsedId })
+    .remove(id)
     .write()
 }
+
+
 
 /**
  * Remove all data
