@@ -3,6 +3,7 @@ const FileSync = require('lowdb/adapters/FileSync')
 const accountModel = require('../model/accountModel')
 const transactionModel = require('../model/transactionModel')
 const usersModel = require('../model/usersModel')
+const itemModel = require('../model/itemModel')
 
 // ⚠️ propietary code, don't change it ⚠️
 // this code will create db.json automatically if your folder doesn't have one
@@ -23,6 +24,7 @@ let db;
     db.defaults({
       transaction: [],
       account: [],
+      item: [],
       users: []
     })
       .write()
@@ -82,6 +84,10 @@ function add(tableName, body) {
   if (tableName == 'users') {
     shapedBody = shapeObject(body, usersModel)
   }
+  if (tableName == 'item') {
+    shapedBody = shapeObject(body, itemModel)
+  }
+
 
 
   if (!shapedBody) {
@@ -99,21 +105,24 @@ function add(tableName, body) {
  * @param {Object} body updated data
  */
 function edit(tableName, id, body) {
-  // let shapedBody
+  let shapedBody
 
-  // if (tableName == 'books') {
-  //   shapedBody = shapeObject(body, booksModel)
-  // }
-  // if (tableName == 'inventories') {
-  //   shapedBody = shapeObject(body, inventoriesModel)
-  // }
-  // if (tableName == 'stores') {
-  //   shapedBody = shapeObject(body, storesModel)
-  // }
+  if (tableName == 'account') {
+    shapedBody = shapeObject(body, accountModel)
+  }
+  if (tableName == 'transaction') {
+    shapedBody = shapeObject(body, transactionModel)
+  }
+  if (tableName == 'users') {
+    shapedBody = shapeObject(body, usersModel)
+  }
+  if (tableName == 'item') {
+    shapedBody = shapeObject(body, itemModel)
+  }
 
-  // if (!shapedBody) {
-  //   return false
-  // }
+  if (!shapedBody) {
+    return false
+  }
   db.get(tableName)
     .find(id)
     .assign(body)
@@ -126,21 +135,7 @@ function edit(tableName, id, body) {
  * @param {String|Number} id data id
  */
 function remove(tableName, id) {
-  // let shapedBody
 
-  // if (tableName == 'books') {
-  //   shapedBody = shapeObject(query, booksModel)
-  // }
-  // if (tableName == 'inventories') {
-  //   shapedBody = shapeObject(query, inventoriesModel)
-  // }
-  // if (tableName == 'stores') {
-  //   shapedBody = shapeObject(query, storesModel)
-  // }
-
-  // if (!shapedBody) {
-  //   return false
-  // }
   db.get(tableName)
     .remove(id)
     .write()

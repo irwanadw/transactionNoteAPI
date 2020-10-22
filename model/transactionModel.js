@@ -1,8 +1,7 @@
 module.exports = [
   'id',
+  'accountId',
   'transId',
-  'transName',
   'transDate',
   'transValue',
-  'transReceipt'
 ]

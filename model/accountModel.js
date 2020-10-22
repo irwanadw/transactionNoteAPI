@@ -1,7 +1,7 @@
 module.exports = [
   'id',
-  'usersId',
-  'name',
+  'accountId',
+  'full name',
   'email',
   'address',
   'phoneNumber',
