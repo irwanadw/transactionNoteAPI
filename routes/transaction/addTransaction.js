@@ -6,9 +6,9 @@ const authentication = require('../../middleware/authenticationMiddleware')
 app.use(authentication)
 
 
-app.post('/books', (req, res) => {
+app.post('/transaction', (req, res) => {
   const body = req.body
-  const result = db.add('books', body)
+  const result = db.add('transaction', body)
   if (!result) {
     res.status(400).send('Wrong body')
   } else {

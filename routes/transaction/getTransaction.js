@@ -5,16 +5,9 @@ const authentication = require('../../middleware/authenticationMiddleware')
 
 app.use(authentication)
 
-
-app.post('/stores', (req, res) => {
-  const body = req.body
-  const result = db.add('stores', body)
-  if (!result) {
-    res.status(400).send('Wrong body')
-  } else {
-    res.send(result)
-  }
-  return
+app.get('/transaction', (req, res) => {
+  const result = db.get('transaction', req.query)
+  res.send(result)
 })
 
 

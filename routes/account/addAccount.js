@@ -6,10 +6,15 @@ const authentication = require('../../middleware/authenticationMiddleware')
 app.use(authentication)
 
 
-app.get('/inventories', (req, res) => {
-  console.log(req.query);
-  const result = db.get('inventories', req.query)
-  res.send(result)
+app.post('/account', (req, res) => {
+  const body = req.body
+  const result = db.add('account', body)
+  if (!result) {
+    res.status(400).send('Wrong body')
+  } else {
+    res.send(result)
+  }
+  return
 })
 
 

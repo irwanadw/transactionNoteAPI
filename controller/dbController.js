@@ -1,8 +1,7 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
-const booksModel = require('../model/booksModel')
-const inventoriesModel = require('../model/inventoriesModel')
-const storesModel = require('../model/storesModel')
+const accountModel = require('../model/accountModel')
+const transactionModel = require('../model/transactionModel')
 const usersModel = require('../model/usersModel')
 
 // ⚠️ propietary code, don't change it ⚠️
@@ -22,9 +21,8 @@ let db;
     const adapter = new FileSync('db.json')
     db = low(adapter)
     db.defaults({
-      stores: [],
-      inventories: [],
-      books: [],
+      transaction: [],
+      account: [],
       users: []
     })
       .write()
@@ -75,14 +73,11 @@ function get(tableName, query) {
 function add(tableName, body) {
   let shapedBody
 
-  if (tableName == 'books') {
-    shapedBody = shapeObject(body, booksModel)
+  if (tableName == 'account') {
+    shapedBody = shapeObject(body, accountModel)
   }
-  if (tableName == 'inventories') {
-    shapedBody = shapeObject(body, inventoriesModel)
-  }
-  if (tableName == 'stores') {
-    shapedBody = shapeObject(body, storesModel)
+  if (tableName == 'transaction') {
+    shapedBody = shapeObject(body, transactionModel)
   }
   if (tableName == 'users') {
     shapedBody = shapeObject(body, usersModel)
@@ -104,21 +99,21 @@ function add(tableName, body) {
  * @param {Object} body updated data
  */
 function edit(tableName, id, body) {
-  let shapedBody
+  // let shapedBody
 
-  if (tableName == 'books') {
-    shapedBody = shapeObject(body, booksModel)
-  }
-  if (tableName == 'inventories') {
-    shapedBody = shapeObject(body, inventoriesModel)
-  }
-  if (tableName == 'stores') {
-    shapedBody = shapeObject(body, storesModel)
-  }
+  // if (tableName == 'books') {
+  //   shapedBody = shapeObject(body, booksModel)
+  // }
+  // if (tableName == 'inventories') {
+  //   shapedBody = shapeObject(body, inventoriesModel)
+  // }
+  // if (tableName == 'stores') {
+  //   shapedBody = shapeObject(body, storesModel)
+  // }
 
-  if (!shapedBody) {
-    return false
-  }
+  // if (!shapedBody) {
+  //   return false
+  // }
   db.get(tableName)
     .find(id)
     .assign(body)
@@ -131,21 +126,21 @@ function edit(tableName, id, body) {
  * @param {String|Number} id data id
  */
 function remove(tableName, id) {
-  let shapedBody
+  // let shapedBody
 
-  if (tableName == 'books') {
-    shapedBody = shapeObject(query, booksModel)
-  }
-  if (tableName == 'inventories') {
-    shapedBody = shapeObject(query, inventoriesModel)
-  }
-  if (tableName == 'stores') {
-    shapedBody = shapeObject(query, storesModel)
-  }
+  // if (tableName == 'books') {
+  //   shapedBody = shapeObject(query, booksModel)
+  // }
+  // if (tableName == 'inventories') {
+  //   shapedBody = shapeObject(query, inventoriesModel)
+  // }
+  // if (tableName == 'stores') {
+  //   shapedBody = shapeObject(query, storesModel)
+  // }
 
-  if (!shapedBody) {
-    return false
-  }
+  // if (!shapedBody) {
+  //   return false
+  // }
   db.get(tableName)
     .remove(id)
     .write()

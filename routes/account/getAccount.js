@@ -5,8 +5,10 @@ const authentication = require('../../middleware/authenticationMiddleware')
 
 app.use(authentication)
 
-app.get('/stores', (req, res) => {
-  const result = db.get('stores', req.query)
+
+app.get('/account', (req, res) => {
+  console.log(req.query);
+  const result = db.get('account', req.query)
   res.send(result)
 })
 
